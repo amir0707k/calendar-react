@@ -1,10 +1,11 @@
+import './App.css'
 import React, { useState } from "react";
 import DatePicker1 from "./Components/DatePicker";
-import './App.css'
 
 function App() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [secondaryDate, setSecondaryDate] = useState(startDate);
+  const today = new Date();
+  const [startDate, setStartDate] = useState(today);
+  const [secondaryDate, setSecondaryDate] = useState(today);
 
   const handleSecondaryDateChange = (date) => {
     if (date >= startDate) {
@@ -20,12 +21,17 @@ function App() {
 
   return (
     <div className="app">
-      <DatePicker1 startDate={startDate} setStartDate={handleStartDateChange} />
+      <DatePicker1
+        startDate={startDate}
+        setStartDate={handleStartDateChange}
+        minDate={today} 
+        maxDate={secondaryDate} 
+      />
       <DatePicker1
         startDate={secondaryDate}
         setStartDate={handleSecondaryDateChange}
         minDate={startDate}
-        maxDate={secondaryDate} 
+        maxDate={secondaryDate}
       />
     </div>
   );
